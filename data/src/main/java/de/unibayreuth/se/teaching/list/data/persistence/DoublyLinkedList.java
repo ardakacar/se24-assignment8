@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 @Getter
 @Setter
 @Slf4j
-public class DoublyLinkedList {
+public class DoublyLinkedList implements Subject {
     private Element start;
     private Element end;
     private int length;
@@ -29,6 +29,25 @@ public class DoublyLinkedList {
         return instance;
     }
     /* Implementation of single pattern */
+
+    private final List<Observer> observers = new ArrayList<>();
+
+    @Override
+    public void attach(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void detach(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void updateObservers() {
+        for (Observer observer : observers) {
+            observer.update(this);
+        }
+    }
     /**
      * Add an element at the end of the list
      * @param e New list element
@@ -135,6 +154,7 @@ public class DoublyLinkedList {
         start = null;
         end = null;
         length = 0;
+        updateObservers();
     }
 
     /**
