@@ -12,7 +12,9 @@ class DoublyLinkedListTest {
 
     @BeforeEach
     void setUp() {
-        list = new DoublyLinkedList();
+        list = getinstance();
+        /* Implementation of the getinstance method to use the instance
+        * of the DoublyLinkedList object rather than the object itself */
     }
 
     @Test

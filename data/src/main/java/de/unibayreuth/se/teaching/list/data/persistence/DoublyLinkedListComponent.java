@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class DoublyLinkedListComponent {
-    private final DoublyLinkedList list = new DoublyLinkedList();
+    /* Changes on this line to use instance instead of new-operator */
+    private final DoublyLinkedList list = getinstance();
 
     public void append(DoublyLinkedList.Element e, boolean elementValidation) {
         list.append(e, elementValidation);

@@ -19,7 +19,16 @@ public class DoublyLinkedList {
     private int length;
 
     private static final Logger logger = LoggerFactory.getLogger(DoublyLinkedListComponent.class);
-
+    /* Implementation of singleton pattern */
+    private static DoublyLinkedList instance;
+    private DoublyLinkedList() {}
+    public static DoublyLinkedList getInstance(){
+        if (instance == null) {
+            instance = new DoublyLinkedList();
+        }
+        return instance;
+    }
+    /* Implementation of single pattern */
     /**
      * Add an element at the end of the list
      * @param e New list element
