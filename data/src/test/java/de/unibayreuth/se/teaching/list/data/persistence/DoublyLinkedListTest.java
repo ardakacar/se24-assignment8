@@ -12,9 +12,17 @@ class DoublyLinkedListTest {
 
     @BeforeEach
     void setUp() {
-        list = getinstance();
+        list = DoublyLinkedList.getinstance();
+
+        for(Observer o : list.observers){
+            list.detach(o);
+        }
+
+        list.clear(); // to make tests run without errors with the singleton pattern implemented
         /* Implementation of the getinstance method to use the instance
         * of the DoublyLinkedList object rather than the object itself */
+
+        
     }
 
     @Test
@@ -234,6 +242,23 @@ class DoublyLinkedListTest {
         list.append(0.4);
         // then: the string representation of the list is "0.9<->0.5<->0.4"
         Assertions.assertEquals("0.9<->0.5<->0.4", list.toString());
+    }
+
+    @Test
+    void testAttachobserverToList(){
+        var obs1 = new ListClearedObserver();
+        list.attach(obs1);
+        Assertions.assertEquals(list.observers.size(),1);
+    }
+
+    @Test
+    void testDetachObserverToList(){
+        var obs2 = new ListClearedObserver();
+        list.attach(obs2);
+        Assertions.assertEquals(list.observers.size(),1);
+        list.detach(obs2);
+        Assertions.assertEquals(list.observers.size(),0);
+
     }
 
     /**

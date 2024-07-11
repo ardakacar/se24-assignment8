@@ -47,6 +47,7 @@ public class DoublyLinkedList implements Subject {
         for (Observer observer : observers) {
             observer.update(this);
         }
+        
     }
     /**
      * Add an element at the end of the list
@@ -154,7 +155,7 @@ public class DoublyLinkedList implements Subject {
         start = null;
         end = null;
         length = 0;
-        updateObservers();
+        updateObservers(); // !!
     }
 
     /**
